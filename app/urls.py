@@ -6,11 +6,12 @@ urlpatterns = patterns('',
     # url(r'^$', 'app.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
 
-    url(r'^$', 'app.views.home', name='home'),
-    url(r'^directions', 'app.views.directions', name='directions'),
-    url(r'^merchandise', 'app.views.merchandise', name='merchandise'),
-    url(r'^tickets', 'app.views.tickets', name='tickets'),
-    url(r'^schedule', 'app.views.schedule', name='schedule'),
+    url(r'^$', 'app.views.splash', name='splash'),
+    url(r'^feed', 'app.views.feed', name='feed'),
+    url(r'^explore', 'app.views.explore', name='explore'),
+    url(r'^dashboard', 'app.views.dashboard', name='dashboard'),
+    url(r'^login', 'app.views.login', name='login'),
+    url(r'^logout', 'app.views.logout', name='logout'),
 
     # url(r'^admin/', include(admin.site.urls)),
 )
