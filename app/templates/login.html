@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}{% endblock %}
+
+{% load bootstrap3 %}
+{% block content %}
+<div class="col-sm-8">
+    <form action="/login" method="post" class="form">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        {% buttons %}
+            <button type="submit" class="btn btn-primary">
+                <i class="fa fa-sign-in"> Submit</i> 
+            </button>
+        {% endbuttons %}
+    </form>
+</div>
+{% endblock %}
