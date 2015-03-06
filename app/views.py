@@ -27,6 +27,9 @@ def splash(request):
 def about(request):
     return render(request,'about.html')
 
+def signup(request):
+    return render(request, 'signup.html')
+
 def login(request):
     # catch logged-in user and send them to dash
     if request.user.is_authenticated():

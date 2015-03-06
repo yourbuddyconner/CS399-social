@@ -12,6 +12,7 @@ urlpatterns = patterns('',
     url(r'^explore', 'app.views.explore', name='explore'),
     url(r'^dashboard', 'app.views.dashboard', name='dashboard'),
     url(r'^login', 'app.views.login', name='login'),
+    url(r'^signup', 'app.views.signup', name='signup'),
     url(r'^logout', 'app.views.logout', name='logout'),
 
     # url(r'^admin/', include(admin.site.urls)),
