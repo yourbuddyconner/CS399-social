@@ -18,3 +18,11 @@ class AuthForm(AuthenticationForm):
     def confirm_login_allowed(self, user):
     	# auths everyone with valid creds, could be pickier
         pass
+
+class Signup(models.Model):
+	first_name = models.CharField(max_length=50)
+	last_name = models.CharField(max_length=50)
+	email = models.EmailField(max_length = 254)
+	username = models.EmailField(max_length = 50)
+	password = models.IntegerField()
+	created = models.DateTimeField(auto_now_add = True)

@@ -1,5 +1,9 @@
 from django.shortcuts import render, redirect
+from django.http import HttpResponseRedirect
+
 from app.models import *
+from app.forms import SignupForm
+
 
 # for login, logout, and auth
 from django.contrib.auth import authenticate, login, logout
@@ -28,7 +32,27 @@ def about(request):
     return render(request,'about.html')
 
 def signup(request):
-    return render(request, 'signup.html')
+    if request.method == 'POST':
+        form = SignupForm(request.POST)
+
+        if form.is_valid():
+            register = Signup()
+            register.first_name = form.cleaned_data["first_name"]
+            register.last_name = form.cleaned_data["last_name"]
+            register.email = form.cleaned_data["email"]
+            register.username = form.cleaned_data["username"]
+            register.password = form.cleaned_data["password"]
+            register.save()
+
+            return HttpResponseRedirect('/about')
+
+    else:
+        
+        form = SignupForm()
+
+    return render(request, 'signup.html', {'form': form})
+
+
 
 def login(request):
     # catch logged-in user and send them to dash
