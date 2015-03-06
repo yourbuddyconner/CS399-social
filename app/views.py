@@ -23,6 +23,10 @@ def dashboard(request):
 def splash(request):
     return render(request, 'splash.html')
 
+
+def about(request):
+    return render(request,'about.html')
+
 def login(request):
     # catch logged-in user and send them to dash
     if request.user.is_authenticated():
