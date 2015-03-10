@@ -14,11 +14,6 @@ class Post(models.Model):
 	def __unicode__(self):
 		return self.post_type
 
-class AuthForm(AuthenticationForm):
-    def confirm_login_allowed(self, user):
-    	# auths everyone with valid creds, could be pickier
-        pass
-
 class Signup(models.Model):
 	first_name = models.CharField(max_length=50)
 	last_name = models.CharField(max_length=50)

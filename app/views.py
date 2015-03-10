@@ -3,11 +3,11 @@ from django.http import HttpResponseRedirect
 
 from app.models import *
 from app.forms import SignupForm
-
+from app.forms import AuthForm
 
 # for login, logout, and auth
-from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import authenticate, login, logout
 
 #https://docs.djangoproject.com/en/1.7/topics/auth/default/#the-login-required-decorator
 # catch the user if logged out
@@ -25,7 +25,9 @@ def dashboard(request):
     return render(request, 'dashboard.html')
 
 def splash(request):
-    return render(request, 'splash.html')
+	signupform = SignupForm()
+	authform = AuthForm()
+	return render(request, 'splash.html', {'signupform': signupform, 'authform': authform})
 
 
 def about(request):
@@ -48,7 +50,7 @@ def signup(request):
 
     else:
         
-        form = SignupForm()
+        signupform = SignupForm()
 
     return render(request, 'signup.html', {'form': form})
 

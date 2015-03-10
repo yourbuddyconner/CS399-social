@@ -13,7 +13,7 @@
     <meta name="author" content="">
     <link rel="shortcut icon" href="assets/img/favicon.png">
 
-    <title>Splash Page</title>
+    <title>Welcome to FMLbook</title>
 
     <!-- Bootstrap core CSS -->
     <link href="static/css/bootstrap.css" rel="stylesheet">
@@ -32,7 +32,7 @@
   </head>
 
   <body>
-
+						{% load bootstrap3 %}
     <!-- Fixed navbar -->
     <div class="navbar navbar-default navbar-fixed-top">
       <div class="container">
@@ -42,32 +42,57 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#"><b>Project 4</b></a>
+          <a class="navbar-brand" href="#"><b>fmlbook</b></a>
         </div>
         <div class="navbar-collapse collapse">
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href='{% url "signup" %}'>Join Today</a></li>
+          <ul class="nav navbar-nav navbar-right" role="search">
+            <li>
+			    <form action="/login" method="post" class="navbar-form pull-right">
+				{% csrf_token %}
+				
+				{% bootstrap_form authform layout='inline'%}
+				{% buttons %}
+					<button type="submit" class="btn btn-primary">
+						<i class="fa fa-sign-in">Sign in</i> 
+					</button>
+				{% endbuttons %}
+				</form>
+			
+			
+			</li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
     </div>
 
-	<div id="headerwrap">
+<div id="headerwrap">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-6">
-					<h1>Welcome</h1>
-									
-				</div><!-- /col-lg-6 -->
-				<div class="col-lg-6">
-                                    
+                                     <h2>Share your struggles with the world around you on FMLBook</h2>
                                     <!-- add image to splash page --> 
 					<img class="img-responsive" src="" alt="">
 				</div><!-- /col-lg-6 -->
-				
+
+				<div class="col-lg-6">
+					<h1>Sign Up</h1>
+						<h2>It's free and always will be.</h2>
+
+						<div class="col-sm-8">
+							<form action="/signup" method="post" class="signupform">
+								{% csrf_token %}
+								{% bootstrap_form signupform %}
+								{% buttons %}
+									<button type="submit" class="btn btn-primary">
+										<i class="fa fa-sign-in">Sign Up</i> 
+									</button>
+								{% endbuttons %}
+							</form>
+						</div>	
+				</div><!-- /col-lg-6 -->
 			</div><!-- /row -->
 		</div><!-- /container -->
-	</div><!-- /headerwrap -->
+</div><!-- /headerwrap -->
 	
 	
     <!-- Bootstrap core JavaScript
