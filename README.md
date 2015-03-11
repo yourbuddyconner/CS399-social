@@ -14,8 +14,16 @@
 - Post
 
 ###ToDo
-- Debug login form, make it work
-- Flesh out splash page
-- Customize menu(s) per-page
-- Show top menu only when logged in
-- get rid of side menu?
+- Login
+	- Authenticate
+	- Ensure that only authenticated users have access:
+		-  to the dashboard
+		-  Make posts
+- Splash page
+	- Add content
+- Django Restful framework
+	- Edit views.py implement
+- Post status to main feed
+- Add feature for other users to comment on status
+- Thumbs up / Thumbs Down
+- Profile Picture Upload
