@@ -55,7 +55,7 @@ def signup(request):
     return render(request, 'signup.html', {'form': form})
 
 
-
+# comment
 def login(request):
     # catch logged-in user and send them to dash
     if request.user.is_authenticated():
