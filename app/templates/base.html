@@ -78,16 +78,16 @@
                         </div>
                     </form>
                     <ul class="nav navbar-nav">
+					  <li>
+                        <a href='{% url "dashboard" %}'>My Profile</a>
+                      </li>
                       <li>
-                        <a href='{% url "feed" %}'><i class="fa fa-home"></i> Home</a>
+                        <a href='{% url "feed" %}'>Feed</a>
                       </li>
                       <li>
                         <a href="#postModal" role="button" data-toggle="modal"><i class="fa fa-plus"></i> Post</a>
                       </li>
-                      <li>
-                        <a href="#"><span class="badge">badge</span></a>
-                      </li>
-                        <li>
+						<li>
                         <a href='{% url "about" %}'>About</a>
                       </li>
                         <li>
