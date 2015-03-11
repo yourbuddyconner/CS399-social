@@ -74,19 +74,19 @@
 <div id="headerwrap">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-6">
+				<div class="col-md-12 col-md-offset-2">
 				
                                      <h2>Share your struggles with the world around you on FMLBook</h2>
                                     <!-- add image to splash page --> 
 					<img class="img-responsive" src="" alt="">
 				</div><!-- /col-lg-6 -->
-
-				<div class="col-lg-6">
+				</div>
+				<div class="row">
+				<div class="col-md-12 col-md-offset-2">
 				
-					<h1>Sign Up</h1>
-						<h2>It's free and always will be.</h2>
+					<h1>Sign Up</h1><span><h2>It's free and always will be.</h2></span>
 
-						<div class="col-sm-8">
+						
 						<div class="form-group">
 							<form action="/signup" method="post" class="signupform">
 								{% csrf_token %}
@@ -98,7 +98,7 @@
 								{% endbuttons %}
 							</form>
 						</div>	
-						</div>	
+							
 				</div><!-- /col-lg-6 -->
 			</div><!-- /row -->
 		</div><!-- /container -->
