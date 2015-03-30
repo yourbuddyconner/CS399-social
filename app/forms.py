@@ -12,5 +12,5 @@ class SignupForm(forms.Form):
 	last_name = forms.CharField(label = "Last Name")
 	email = forms.EmailField(label = "Email")
 	username = forms.CharField(label = "Username")
-	password = forms.IntegerField(label = "Password")
+	password = forms.CharField(label = "Password", widget=forms.PasswordInput())
 
