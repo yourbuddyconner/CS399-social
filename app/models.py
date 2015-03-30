@@ -13,11 +13,3 @@ class Post(models.Model):
 	# returns a friendly name for django
 	def __unicode__(self):
 		return self.post_type
-
-class Signup(models.Model):
-	first_name = models.CharField(max_length=50)
-	last_name = models.CharField(max_length=50)
-	email = models.EmailField(max_length = 254)
-	username = models.EmailField(max_length = 50)
-	password = models.IntegerField()
-	created = models.DateTimeField(auto_now_add = True)
