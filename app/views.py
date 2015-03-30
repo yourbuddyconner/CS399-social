@@ -1,78 +1,93 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
+from django.contrib import messages
 
 from app.models import *
 from app.forms import SignupForm
 from app.forms import AuthForm
 
 # for login, logout, and auth
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required   
+from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout 
+
+from django.contrib.auth.models import User
 
 #https://docs.djangoproject.com/en/1.7/topics/auth/default/#the-login-required-decorator
 # catch the user if logged out
 # redirect to login with the path where they were going
-@login_required
+@login_required(login_url='/')
 def feed(request):
     return render(request, 'feed.html')
 
-@login_required
+@login_required(login_url='/')
 def explore(request):
     return render(request, 'feed.html')
 
-@login_required
+@login_required(login_url='/')
 def dashboard(request):
     return render(request, 'dashboard.html')
 
 def splash(request):
 	signupform = SignupForm()
 	authform = AuthForm()
+	if request.method == 'POST':
+		signupform = SignupForm(request.POST)
+		if signupform.is_valid():
+			if username_exists(signupform.cleaned_data["username"]):
+				messages.error(request, 'Username already exists.')
+				return render(request, 'splash.html', {'signupform': signupform, 'authform': authform})
+			if email_exists(signupform.cleaned_data["email"]):
+				messages.error(request, 'User already exists with this email address.')
+				return render(request, 'splash.html', {'signupform': signupform, 'authform': authform})
+				
+			user = User.objects.create_user(signupform.cleaned_data["username"], signupform.cleaned_data["email"], signupform.cleaned_data["password"])
+			user.first_name = signupform.cleaned_data["first_name"]
+			user.last_name = signupform.cleaned_data["last_name"]
+			user.save
+			return render(request, 'dashboard.html')
+	else:
+		signupform = SignupForm()
 	return render(request, 'splash.html', {'signupform': signupform, 'authform': authform})
 
 
 def about(request):
     return render(request,'about.html')
 
-def signup(request):
-    if request.method == 'POST':
-        form = SignupForm(request.POST)
-
-        if form.is_valid():
-            register = Signup()
-            register.first_name = form.cleaned_data["first_name"]
-            register.last_name = form.cleaned_data["last_name"]
-            register.email = form.cleaned_data["email"]
-            register.username = form.cleaned_data["username"]
-            register.password = form.cleaned_data["password"]
-            register.save()
-
-            return HttpResponseRedirect('/about')
-
-    else:
-        
-        signupform = SignupForm()
-
-    return render(request, 'signup.html', {'form': form})
-
-
+def username_exists(username):
+    if User.objects.filter(username=username).count():
+        return True
+    return False	
+	
+def email_exists(email):
+    if User.objects.filter(email=email).count():
+        return True
+    return False
+	
 # comment
 def login(request):
     # catch logged-in user and send them to dash
-    if request.user.is_authenticated():
-        return redirect('dashboard')
-    if request.method == 'POST':
-        # fill the AuthForm with post data
-        form = AuthForm(request.POST)
-        # if the form is valid
-        if form.is_valid():
-            # log in
-            user = form.save()
-            return redirect('dashboard.html')
-    else: 
-        form = AuthForm()
-    return render(request, 'login.html', {
-        'form': form
-    })
+    #if request.user.is_authenticated():
+    #    return redirect('dashboard')
+	authform = AuthForm(request.POST)
+	username = request.POST['username']
+	password = request.POST['password']
+	user = authenticate(username=username, password=password)
+	if user is not None:
+		if user.is_active:
+			auth_login(request, user)
+			# Redirect to a success page.
+			return render(request, 'dashboard.html')
+		else:
+			# Return a 'disabled account' error message
+			messages.error(request, 'Account is disabled')
+			return render(request, 'login.html', {'form': authform})
+	else:
+		# Return an 'invalid login' error message.
+		messages.error(request, 'Incorrect username or password')
+		return render(request, 'login.html', {'form': authform})	
+
 
 def logout(request):
-    return render(request, 'splash.html')
+		authform = AuthForm()
+		auth_logout(request)
+		return render(request, 'login.html', {'form': authform})
