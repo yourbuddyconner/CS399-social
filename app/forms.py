@@ -14,3 +14,5 @@ class SignupForm(forms.Form):
 	username = forms.CharField(label = "Username")
 	password = forms.CharField(label = "Password", widget=forms.PasswordInput())
 
+class PictureUploadForm(forms.Form):
+	image = forms.FileField(label='Upload Your Profile Picture')
