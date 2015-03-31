@@ -5,6 +5,8 @@ from django.contrib import messages
 from app.models import *
 from app.forms import SignupForm
 from app.forms import AuthForm
+from app.forms import PictureUploadForm
+
 
 # for login, logout, and auth
 from django.contrib.auth.decorators import login_required   
@@ -62,6 +64,17 @@ def email_exists(email):
     if User.objects.filter(email=email).count():
         return True
     return False
+
+def profile_picture(request):
+    if request.method == 'POST':
+        form = PictureUploadForm(request.POST, request.FILES)
+        if form.is_valid():
+            instance = Image(image = request.FILES['image'])
+            instance.save()
+            return HttpResponseRedirect('dashboard.html')
+    else:
+        form = PictureUploadForm()
+    return render(request, 'profile_picture.html', {'form': form})
 	
 # comment
 def login(request):
