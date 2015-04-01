@@ -1,5 +1,6 @@
 ##Class Project for NAU CS399
-
+### How to install Requirements
+- pip install -r requirements.txt
 ###Urls
 - If user isn's logged in redirect to '/login'
 - "/": splash page, if the user is logged in redirect to '/dashboard'
