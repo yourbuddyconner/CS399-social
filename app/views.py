@@ -22,6 +22,10 @@ def feed(request):
     return render(request, 'feed.html')
 
 @login_required(login_url='/')
+def temp(request):
+    return render(request, 'oldfeed.html')
+
+@login_required(login_url='/')
 def explore(request):
     return render(request, 'feed.html')
 
@@ -89,7 +93,8 @@ def login(request):
 		if user.is_active:
 			auth_login(request, user)
 			# Redirect to a success page.
-			return render(request, 'dashboard.html')
+			#return render(request, 'dashboard.html')
+			return HttpResponseRedirect('/feed')
 		else:
 			# Return a 'disabled account' error message
 			messages.error(request, 'Account is disabled')

@@ -16,6 +16,7 @@ urlpatterns = patterns('',
     url(r'^dashboard', 'app.views.dashboard', name='dashboard'),
     url(r'^login', 'app.views.login', name='login'),
     url(r'^logout', 'app.views.logout', name='logout'),
+    url(r'^temp', 'app.views.temp', name='temp'),
 
-    url(r'^admin/', include(admin.site.urls)),
+    url(r'^admin/', include(admin.site.urls))
 )
