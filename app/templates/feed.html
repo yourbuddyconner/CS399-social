@@ -9,12 +9,17 @@ post information to pass to the template
 
 {% block content %}
 <div class="well"> 
-	<form class="form-horizontal" role="form">
+{% load bootstrap3 %}
+	<form action="/posts" method="post" class="form-horizontal" role="form">
 
-			<div class="form-group" style="padding:1px;">
-				<textarea class="form-control" placeholder="Post your struggle"></textarea>
-			
-			<button class="btn btn-success pull-right" type="button">Post</button>
+			<div class="form-group" style="padding:15px;">
+
+                    {% csrf_token %}
+                    {% bootstrap_form postform %}
+                    {% buttons %}
+                        <button type="submit" class="btn btn-success pull-right">Post</button>
+                    {% endbuttons %}
+
 			</div>
 	</form>
 </div><!--/well-->
