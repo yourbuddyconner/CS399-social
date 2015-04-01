@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import AuthenticationForm
+from app.models import *
 
 class AuthForm(AuthenticationForm):
     def confirm_login_allowed(self, user):
@@ -16,3 +17,8 @@ class SignupForm(forms.Form):
 
 class PictureUploadForm(forms.Form):
 	image = forms.FileField(label='Upload Your Profile Picture')
+	
+class PostForm(forms.ModelForm):
+	class Meta:
+		model = Post
+		fields = ['caption',]
