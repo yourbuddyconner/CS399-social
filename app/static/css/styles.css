@@ -125,9 +125,13 @@ a {
     background-color:#3b3b3b;
     padding-top:0;
   }
+  .nav {
+   background: rgba(255, 255, 255, 0.7);
+  }
   #sidebar .nav>li {
     color: #ddd;
     background: linear-gradient(#3E3E3E, #383838);
+    
     border-top: 1px solid #484848;
     border-bottom: 1px solid #2E2E2E;
     padding-left:10px;
