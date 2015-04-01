@@ -6,20 +6,45 @@ from app.models import *
 from app.forms import SignupForm
 from app.forms import AuthForm
 from app.forms import PictureUploadForm
+from app.forms import PostForm
 
+
+#Rest Framework
+from rest_framework import serializers 
+
+#JSON
+from django.http import JsonResponse
 
 # for login, logout, and auth
 from django.contrib.auth.decorators import login_required   
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout 
-
 from django.contrib.auth.models import User
 
 #https://docs.djangoproject.com/en/1.7/topics/auth/default/#the-login-required-decorator
 # catch the user if logged out
 # redirect to login with the path where they were going
+
+
+@login_required(login_url='/')
+def posts(request):
+	postform = PostForm()
+	if request.method == 'POST':
+		postform = PostForm(request.POST)
+		if postform.is_valid():
+			x = Post()
+			x.owner = request.user
+			x.caption = postform.cleaned_data['caption']
+			x.save()
+		return HttpResponseRedirect('/feed')
+	elif request.method == 'GET':
+		posts = Post.objects.all()
+		serializer = PostSerializer(posts, many=True)
+		return JsonResponse(serializer.data, status=200, safe=False) #not sure of the implications of safe=false
+
 @login_required(login_url='/')
 def feed(request):
-    return render(request, 'feed.html')
+	postform = PostForm()
+	return render(request, 'feed.html', {'postform': postform})
 
 @login_required(login_url='/')
 def temp(request):
@@ -109,3 +134,9 @@ def logout(request):
 		authform = AuthForm()
 		auth_logout(request)
 		return render(request, 'login.html', {'form': authform})
+		
+#Serializers
+class PostSerializer(serializers.ModelSerializer):
+	class Meta:
+		model = Post
+		fields = ('owner', 'caption', 'timestamp')
