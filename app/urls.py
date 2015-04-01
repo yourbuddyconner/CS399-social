@@ -3,8 +3,6 @@ from django.contrib import admin
 from django.conf import settings
 #from . import views
 
-
-
 urlpatterns = patterns('',
     # Examples:
     # url(r'^$', 'app.views.home', name='home'),
@@ -18,8 +16,7 @@ urlpatterns = patterns('',
     url(r'^dashboard', 'app.views.dashboard', name='dashboard'),
     url(r'^login', 'app.views.login', name='login'),
     url(r'^logout', 'app.views.logout', name='logout'),
-    url(r'^temp', 'app.views.temp', name='temp'), #delete eventually
-    url(r'^posts', 'app.views.posts', name='posts'),
+    url(r'^temp', 'app.views.temp', name='temp'),
+
     url(r'^admin/', include(admin.site.urls))
 )
-
