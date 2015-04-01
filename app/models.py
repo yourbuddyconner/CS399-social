@@ -6,9 +6,10 @@ from django.utils import timezone
 
 class Post(models.Model):
 	owner = models.ForeignKey(User);
-	post_type = models.CharField(max_length=100)
+	post_type = models.CharField(max_length=100) #Is this needed?
 	caption = models.CharField(max_length=300)
 	timestamp = models.DateTimeField(auto_now_add=True)
+
 	
 	
 class Image(models.Model):
