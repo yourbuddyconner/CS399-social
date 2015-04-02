@@ -1,2 +1,5 @@
 django==1.7.2
 djangorestframework==3.1.1
+
+http://django-avatar.readthedocs.org/en/latest/
+Install Django-2.0 = pip install django-avatar
