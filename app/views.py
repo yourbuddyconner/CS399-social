@@ -39,7 +39,7 @@ def posts(request):
 	elif request.method == 'GET':
 		posts = Post.objects.all()
 		serializer = PostSerializer(posts, many=True)
-		return JsonResponse(serializer.data, status=200, safe=False) #not sure of the implications of safe=false
+		return (JsonResponse(serializer.data, safe=False, status=200)) #not sure of the implications of safe=false
 
 @login_required(login_url='/')
 def feed(request):

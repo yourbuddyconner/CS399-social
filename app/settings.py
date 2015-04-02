@@ -26,6 +26,8 @@ TEMPLATE_DEBUG = True
 TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'app/../templates')]
 ALLOWED_HOSTS = []
 
+ALLOWED_INCLUDE_ROOTS = [os.path.abspath(os.path.join(BASE_DIR, '/static/html'))]#for access permission with ssi include
+
 
 # Application definition
 

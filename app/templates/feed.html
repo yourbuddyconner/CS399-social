@@ -1,11 +1,19 @@
 <!-- 
 used for /explore and /feed. The views decide what 
 post information to pass to the template
+
+
 -->
 
 {% extends "base.html" %}
 
+
 {% block title %}{% endblock %}
+{% block scripts %}
+
+{% endblock %}
+	
+
 
 {% block content %}
 <div class="well"> 
@@ -25,6 +33,47 @@ post information to pass to the template
 </div><!--/well-->
 
 <!--Mustache Content Feed-->
+{% verbatim %}
+    			<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+			<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/mustache.js/0.8.1/mustache.min.js"> </script>
+			<script type="text/javascript">
+				$(document).ready(function(){
+					function loadData(){
+					$.getJSON("/posts", function(json) {
+						var template = $('#template').html();
+						Mustache.parse(template);
+						var rendered = Mustache.render(template, { array: json});
+						$('#target').html(rendered);
+
+					});
+					setTimeout(loadData, 5000);
+					}
+					loadData();
+					
+				})
+			</script>
+			<div id="target">Loading.. 
+
+			</div>
+			<script id="template" type="x-tmpl-mustache" >
+
+						{{#array}}
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h4>{{owner}}</h4>
+								<h5>( {{timestamp}} )</h5>
+							</div>
+							<p>
+								{{caption}}
+							</p>
+						</div>
+						{{/array}}
+
+			</script>
+{% endverbatim %}
+
+<!--Static Content-->
+
 <div class="panel panel-default">
 	<div class="panel-heading">
 		<h4>Username's Post</h4>
@@ -51,34 +100,7 @@ post information to pass to the template
 	</form>
 </div><!--/well-->
 
-</div><!---->				
-<div class="panel panel-default">
-	<div class="panel-heading">
-		<h4>Username's Post</h4>
-		<h5>(time)</h5>
-	</div>
-	<p>
-		  ohh Mann I don't enough jelly for my peanut butter jelly sandwich
-	</p>
-	<div class="well"> 
-	<ul class="list-group">
-		<li class="list-group-item">
-			Username (time): Comment 1
-		</li>
-		<li class="list-group-item">
-			Username (time): Comment 2
-		</li>
-	</ul>
-	
-	<form class="form-horizontal" role="form">
-			<div class="form-group" style="padding:15px;">
-				<textarea class="form-control" placeholder="Write a comment..."></textarea>
-				<button class="btn btn-success pull-right" type="button">Post</button>
-			</div>
-	</form>
-</div><!--/well-->
-
-</div><!---->			
+</div><!---->	
 
   
 {% endblock %}
