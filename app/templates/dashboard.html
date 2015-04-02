@@ -1,4 +1,6 @@
 {% extends "base.html" %}
+{% load avatar_tags %}
+
 
 {% block title %}{% endblock %}
 
@@ -12,6 +14,8 @@
                       <ul class="list-group">
                         <li class="list-group-item">
                           Profile Picture
+			  {% avatar user 65 %}
+			  <a href="{% url 'avatar_change' %}">Change</a>
                         </li>
                         <li class="list-group-item">
                           First Name:
