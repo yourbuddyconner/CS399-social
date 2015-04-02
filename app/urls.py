@@ -18,7 +18,6 @@ urlpatterns = patterns('',
     url(r'^explore', 'app.views.explore', name='explore'),
     url(r'^profile_picture', 'app.views.profile_picture', name='profile_picture'),
     url(r'^dashboard', 'app.views.dashboard', name='dashboard'),
-    url(r'^avatar/', include('avatar.urls')),
     url(r'^login', 'app.views.login', name='login'),
     url(r'^logout', 'app.views.logout', name='logout'),
     url(r'^temp', 'app.views.temp', name='temp'), #delete eventually
