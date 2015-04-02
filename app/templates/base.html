@@ -30,10 +30,10 @@
               
             <!-- /sidebar -->
             <!-- main right col -->
-            <div class="column col-sm-11 col-xs-11" id="main">
+            <div class="container col-md-offset-1" id="main">
                 <!-- top nav -->
-                
-                <nav class="navbar navbar-inverse navbar-fixed-top " role="navigation"> 
+                <div class="col-md-offset-1">
+                <nav class="container navbar navbar-inverse navbar-fixed-top " role="navigation"> 
 
                     <div class="navbar-header">
                       <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
@@ -97,10 +97,11 @@
                     
                 </nav>
                 <!-- /top nav -->
-                <div class="main-content col-sm-9">
+                <div class="main-content col-md-10">
                     {% block content %}{% endblock %}
                 </div>
 
+            </div>
             </div>
         
     

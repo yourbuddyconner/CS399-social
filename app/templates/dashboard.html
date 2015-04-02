@@ -7,7 +7,7 @@
 
                  <div class="panel panel-default">
 					<div class="panel-heading">
-						<h4>Username</h4>
+						<h4>{{ user.username }}</h4>
 					</div>
                     <div class="panel-body">
                       <ul class="list-group">
@@ -16,10 +16,10 @@
 			
                         </li>
                         <li class="list-group-item">
-                          First Name:
+                          First Name: {{ user.firstname }}
 						</li>
                       <li class="list-group-item">
-                        Last Name:
+                        Last Name: {{ user.lastname}}
 					  </li>
                       </ul>
                     </div><!--/panel-body-->
