@@ -46,16 +46,13 @@
                       
                     </div>
                   
-                    <nav class="collapse navbar-collapse feednavbar" role="navigation">
+                    <nav class="collapse navbar-collapse feednavbar " role="navigation">
                     <form class="navbar-form navbar-left">
                         <div class="input-group input-group-sm" style="max-width:360px;">
-                          <input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term">
-                          <div class="input-group-btn">
-                            <button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
-                          </div>
+                          
                         </div>
-                    </form>
-                    <ul class="nav navbar-nav">
+                    </form> 
+                    <ul class="nav navbar-nav navbar-right">
 
 					  <li>
 
@@ -79,25 +76,16 @@
 					  <li>
                         <a href= https://github.com/yourbuddyconner/CS399-social>Github</a>
                       </li>
-                    </ul>
-                    <ul class="nav navbar-nav navbar-right">
-					
                       <li class="dropdown">
-						<a href="/logout" class="dropdown-toggle" data-toggle="dropdown">Logout</a>
-                        <ul class="dropdown-menu">
-                          <li><a href="">More</a></li>
-                          <li><a href="">More</a></li>
-                          <li><a href="">More</a></li>
-                          <li><a href="">More</a></li>
-                          <li><a href="">More</a></li>
-                        </ul>
-                      </li>
+            <a href="/logout" class="dropdown-toggle" data-toggle="dropdown">LOG OUT</a>
+            </li>
                     </ul>
-                    </nav>
+
+                 
                     
                 </nav>
                 <!-- /top nav -->
-                <div class="main-content col-md-10">
+                <div class="main-content col-md-offset-1 col-md-10">
                     {% block content %}{% endblock %}
                 </div>
 
