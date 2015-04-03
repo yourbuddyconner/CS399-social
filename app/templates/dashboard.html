@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load gravatar %}
 
 
 {% block title %}{% endblock %}
@@ -13,6 +14,8 @@
                       <ul class="list-group">
                         <li class="list-group-item">
                           Profile Picture
+			  <img src="{% gravatar_url user.email %}">
+
 			
                         </li>
                         <li class="list-group-item">

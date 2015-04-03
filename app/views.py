@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 from django.contrib import messages
+import hashlib
 
 from app.models import *
 from app.forms import SignupForm
@@ -134,6 +135,13 @@ def logout(request):
 		authform = AuthForm()
 		auth_logout(request)
 		return render(request, 'login.html', {'form': authform})
+            
+
+def gravatar_url(self):
+	# Get the md5 hash of the email address
+	md5 = hashlib.md5(self.email.encode())
+	digest = md5.hexdigest()
+	return 'http://www.gravatar.com/avatar/{}'.format(digest)
 		
 #Serializers
 class PostSerializer(serializers.ModelSerializer):
