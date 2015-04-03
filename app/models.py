@@ -5,7 +5,7 @@ from django.db import models
 from django.utils import timezone
 
 class Post(models.Model):
-	
+	post_type = models.CharField(max_length=100)
 	owner = models.ForeignKey(User);
 	caption = models.CharField(max_length=300)
 	timestamp = models.DateTimeField(auto_now_add=True)
