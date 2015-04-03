@@ -137,6 +137,14 @@ def logout(request):
 		
 #Serializers
 class PostSerializer(serializers.ModelSerializer):
+	username = serializers.CharField(source ='owner.username')
 	class Meta:
 		model = Post
-		fields = ('owner', 'caption', 'timestamp')
+		fields = ('owner','caption', 'timestamp','username')
+
+# class UserSerializer(serializers.ModelSerializer):
+# 	class Meta:
+# 		model = User
+# 		fields = ('username','first_name')
+
+		
