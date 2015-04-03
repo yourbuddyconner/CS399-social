@@ -145,6 +145,7 @@ def gravatar_url(self):
 		
 #Serializers
 class PostSerializer(serializers.ModelSerializer):
+	username = serializers.CharField(source ='owner.username')
 	class Meta:
 		model = Post
-		fields = ('owner', 'caption', 'timestamp')
+		fields = ('owner','caption', 'timestamp','username')
