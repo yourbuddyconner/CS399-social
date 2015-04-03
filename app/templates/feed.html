@@ -50,29 +50,47 @@ post information to pass to the template
 					}
 					loadData();
 					
-				})
+					
+				}
+
+				)
 			</script>
 			<div id="target">Loading.. 
 
 			</div>
 			<script id="template" type="x-tmpl-mustache" >
+			
 
 						{{#array}}
-						<div class="panel panel-default ">
-							<div class="panel-heading">
-								<h4>{{username}}</h4>
-								<h5>( {{timestamp}} )</h5>
-							</div>
+				
+		<div class="panel panel-default ">
+							<div class="panel-body">
+							<div class = "row">
+							<div class = "col-sm-1">
+								<p>{{username}}:</p>
+								</div>
+							
+							<div class = "col-sm-11">
 							<p>
 								{{caption}}
 							</p>
+							</div>
+							<div class ="pull-right">
+							<p style="font-size:10px;"> {{timestamp}} </p>
+							
+							</div>
+							</div>
 						</div>
+						</div>
+
 						{{/array}}
 
 			</script>
 {% endverbatim %}
 
 <!--Static Content-->
+
+
 
 <div class="panel panel-default">
 	<div class="panel-heading">
