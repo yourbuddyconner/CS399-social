@@ -26,7 +26,9 @@ TEMPLATE_DEBUG = True
 TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'app/../templates')]
 ALLOWED_HOSTS = []
 
-ALLOWED_INCLUDE_ROOTS = [os.path.abspath(os.path.join(BASE_DIR, '/static/html'))]#for access permission with ssi include
+# for access permission with ssi include
+ALLOWED_INCLUDE_ROOTS = [
+    os.path.abspath(os.path.join(BASE_DIR, '/static/html'))]
 
 
 # Application definition
@@ -98,5 +100,5 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'app/static')]
 
 # User Login
-#LOGIN_URL = '/login'
+# LOGIN_URL = '/login'
 LOGIN_URL = '/'
